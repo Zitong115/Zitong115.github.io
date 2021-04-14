@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+
+  
+  <title>实验：眼底彩照糖尿病病变分期诊断</title>
+  
+  <link rel="canonical" href="http://zitong115.github.io/2021/04/14/%E5%AE%9E%E9%AA%8C-%E7%9C%BC%E5%BA%95%E5%BD%A9%E7%85%A7%E7%B3%96%E5%B0%BF%E7%97%85%E7%97%85%E5%8F%98%E5%88%86%E6%9C%9F%E8%AF%8A%E6%96%AD/">
+  
+  <meta name="description" content="《计算机视觉与模式识别》课程设计：基于眼底彩照的糖尿病视网膜病变检测 背景糖尿病视网膜病变（DiabeticRetinopathy，DR）是糖尿病引起的一种视网膜血管病变。由于血糖升高导致眼底的小血管变得十分脆弱和容易受损，血管破裂将导致血管中的血和其它液体渗漏进视网膜，造成视力损伤。更严重者，由于">
+  
+  
+  <meta name="author" content="Zitong">
+  
+  <meta property="og:image" content="http://zitong115.github.ioundefined">
+  
+  <meta property="og:site_name" content="ZITONG" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="实验：眼底彩照糖尿病病变分期诊断" />
+  
+  <meta property="og:description" content="《计算机视觉与模式识别》课程设计：基于眼底彩照的糖尿病视网膜病变检测 背景糖尿病视网膜病变（DiabeticRetinopathy，DR）是糖尿病引起的一种视网膜血管病变。由于血糖升高导致眼底的小血管变得十分脆弱和容易受损，血管破裂将导致血管中的血和其它液体渗漏进视网膜，造成视力损伤。更严重者，由于">
+  
+  <meta property="og:url" content="http://zitong115.github.io/2021/04/14/%E5%AE%9E%E9%AA%8C-%E7%9C%BC%E5%BA%95%E5%BD%A9%E7%85%A7%E7%B3%96%E5%B0%BF%E7%97%85%E7%97%85%E5%8F%98%E5%88%86%E6%9C%9F%E8%AF%8A%E6%96%AD/" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="实验：眼底彩照糖尿病病变分期诊断">
+  
+  <meta name="twitter:description" content="《计算机视觉与模式识别》课程设计：基于眼底彩照的糖尿病视网膜病变检测 背景糖尿病视网膜病变（DiabeticRetinopathy，DR）是糖尿病引起的一种视网膜血管病变。由于血糖升高导致眼底的小血管变得十分脆弱和容易受损，血管破裂将导致血管中的血和其它液体渗漏进视网膜，造成视力损伤。更严重者，由于">
+  
+  
+  <meta name="twitter:image" content="http://zitong115.github.ioundefined">
+  
+  <meta name="twitter:url" content="http://zitong115.github.io/2021/04/14/%E5%AE%9E%E9%AA%8C-%E7%9C%BC%E5%BA%95%E5%BD%A9%E7%85%A7%E7%B3%96%E5%B0%BF%E7%97%85%E7%97%85%E5%8F%98%E5%88%86%E6%9C%9F%E8%AF%8A%E6%96%AD/" />
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="../fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/prism-dark.css">
+
+  
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+
+  <!-- User css -->
+  
+  
+<link rel="stylesheet" href="/css/user.css">
+
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon3.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #0FA0CE;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #0FA0CE 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #0FA0CE;
+  }
+  .nanobar .bar {
+    background: #0FA0CE;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #0FA0CE;
+    border-color: #0FA0CE;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #0FA0CE;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">🌑</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>☀️</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
+  </div>
+
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      Hi Folks.
+    </h1>
+  </div>
+
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+          
+          <a href="/works" class="ml">Works</a>
+          
+        
+          
+          <a href="/about" class="ml">About</a>
+          
+        
+        
+          
+            <a href="mailto:lizitong.cc@foxmail.com" target="_blank" class="ml">Email</a>
+          
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
+
+        <div class="trans">
+            <h2>实验：眼底彩照糖尿病病变分期诊断</h2>
+
+  <p>《计算机视觉与模式识别》课程设计：基于眼底彩照的糖尿病视网膜病变检测</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>糖尿病视网膜病变（DiabeticRetinopathy，DR）是糖尿病引起的一种视网膜血管病变。由于血糖升高导致眼底的小血管变得十分脆弱和容易受损，血管破裂将导致血管中的血和其它液体渗漏进视网膜，造成视力损伤。更严重者，由于血管破裂导致眼底缺氧，进而产生异常生长的新生血管，可能造成视网膜脱落。长期的糖尿病患者有很高的概率患有DR。早期的 DR 可能持续数年并且无明显的视觉症状，但是一旦 DR 加重，对视力的损伤将是不可逆的，严重时甚至有致盲的风险。在 DR 早期对其进行控制和治疗，可以将其危害降到最小。因此对糖尿病病人进行定期的 DR 筛查非常有必要。但是，由于糖尿病人的巨大基数，定期对所有糖尿病人进行人工筛查缺乏可行性。在此背景下，针对眼底彩照自动检测 DR 这一问题给出解决方案。</p>
+<hr>
+<h2 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h2><h3 id="子任务"><a href="#子任务" class="headerlink" title="子任务"></a>子任务</h3><p>根据 DR 病变严重程度，从无到严重，分为5级，分别是 DR0,DR1,DR2,DR3,DR4。本文将 DR 检测任务分为以下三个子任务：</p>
+<ul>
+<li>病灶检测：给定一张图像，检测其是否存在与 DR 直接或间接相关的病灶；</li>
+<li>DR 转诊：给定一张图像，预测是否需要转诊（当DR 分级达到2及以上时，需要转诊）；</li>
+<li>DR 分级：给定一张图像，预测其 DR 分级；</li>
+</ul>
+<h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><p>本次课程设计所使用数据集来自文献《Learn to segment retinal lesions and beyond》[1]。数据集中的每张眼底彩照大小为 896px*896px，对于训练集和验证集中的图象，已给出其 DR 标签及病灶标签，另外，每张图像还给出了经自动定位得到的视盘、黄斑区域，其位置由划定矩形区域对角线上两点的 x、y 坐标表示。</p>
+<hr>
+<h2 id="模型建立"><a href="#模型建立" class="headerlink" title="模型建立"></a>模型建立</h2><h3 id="病灶检测"><a href="#病灶检测" class="headerlink" title="病灶检测"></a>病灶检测</h3><p>数据集中共有8种出现的病灶，分别是：cotton wool spots、neovascularization、retinal hemor-  rhage、hardexudate、microaneurysm、ﬁbrousproliferation、vitreoushemorrhage、preretinalhemorrhage。对于每一种病灶的检测，可以将其定义为一个二分类问题：0（没有该病灶）和 1（存在该病灶）。下面将从特征构造、模型训练和评估来阐述分类过程。</p>
+<h4 id="特征构造"><a href="#特征构造" class="headerlink" title="特征构造"></a>特征构造</h4><p>++【ResNet特征】++ </p>
+<p>采用一个在ImageNet分类任务上训练好的卷积神经网络 (ResNet18) 为 DR 数据集中的每一张眼底图像提取了一个 512 维的特征向量。</p>
+<p>++【Histogram特征】++ </p>
+<p>这一特征主要捕捉图象的色彩信息，构造步骤如下：</p>
+<p>(a)  对于每一张眼底彩照，首先将图象按非灰度图读取。</p>
+<p>(b)  对图象进行放缩，将长度和宽度均缩小448px。</p>
+<p>(c)  对 RGB 三个通道，每个通道以 0 255 为范围、128 为桶数提取统计色彩直方图数据。</p>
+<p>(d)  将三个通道的直方图统计数据进行拼接，得到 384 维的直方图特征。</p>
+<p>++【NNF特征】++</p>
+<p>考虑到图象上的白色团块或斑点等非正常图案是进行病灶检测的重要的依据，故在这一特征的提取中，对这些非正常图案做了加强，希望所构造的特征更强调这些图案信息。NNF特征的构造步骤如下：</p>
+<p>(a)  为避免眼底亮部对异常点检测的干扰，首先从所给数据中读取眼底坐标，用该坐标对应的矩形遮掉眼底，矩形颜色与眼底彩照上矩形左上角的颜色相同。</p>
+<p>(b)  为增强图象中较亮的斑点，用边长为 7 的圆形滤波器对图象进行最大值滤波。</p>
+<p>(c)  对图象进行 canny 边缘检测，将高斯滤波的标准差设置为 0.7。</p>
+<p>(d)  缩小图象，将图象的长和宽缩小至224px。经过前四步处理，图象变化示意如下：</p>
+<p><img src="https://img9.doubanio.com/view/photo/l/BlfGQYevAwqkepeEtgfb6Q/80333878/x2640228215.jpg" alt="1"></p>
+<p>(e)  为了较小训练一个基于(d)处理后的图象（作为特征） 和图象 DR 分级数据（作为标签） 的卷积神经网络，用于对图象进行特征提取。卷积神经网络示意图如下：</p>
+<p><img src="https://img3.doubanio.com/view/photo/l/RMveR2MTzlel_e9prVgTgA/80333878/x2640228280.jpg" alt="2"></p>
+<p>第一层卷积使用的激活函数为 Relu，第二层卷积使用的激活函数为 Tanh。得到 256 维特征向量后， 以0.5的概率丢弃。在训练过程中，256维特征向量与最终用于 DR 分级的 5 维向量全连接。训练的最终准确率在 0.6 上下。<br>用该卷积神经网络对第(d)步的图象进行处理，得到256 维特征向量。</p>
+<p>++【ResNet特征+Histogram特征】++</p>
+<p>拼接 ResNet 特征和 Histogram 特征，得到 896 维特征。</p>
+<p>++【ResNet特征+NNF特征】++</p>
+<p>拼接 ResNet 特征和 NNF 特征，得到 768 维特征。</p>
+<p>++【Histogram特征+NNF特征】++ </p>
+<p>拼接 Histogram 特征和 NNF 特征，得到640 维特征。</p>
+<h4 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h4><p>本文中用于训练的模型有logistic regression、naïve bayes、GBDT。其中，三种模型的参数如下：</p>
+<ul>
+<li>Logistic Regression：二分类中，最大迭代次数为 20000；多分类中，采用’sag’ 优化算法，分类方式为’one-vs-rest’。</li>
+<li>Naïve Bayes：采用先验为高斯分布的朴素贝叶斯分类器。</li>
+<li> GBDT：学习率为0.01；树中一个节点所需要用来分裂的最少样本数为 20，树中叶子节点 所需要的最少的样本数为 20； 树的最大深度为 8；需要使用到的决定树的数量为 200；每次产生随机数的随机种子为 10。</li>
+</ul>
+<p>对于每一个病灶，将六种不同特征代入三种模型中分别进行训练。以验证集中，模型预测结果的 F1 score高低作为挑选标准，选出具有最高 F1 score的特征、模型组合，作为针对该病灶的最佳预测方式。</p>
+<h4 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h4><p>实验结果中，八种病灶的平均 F1 为 0.766。cotton wool spots 和 microaneurysm 的预测效果较 差，ﬁbrous proliferation、vitreous hemorrhage、preretinal hemorrhage 的预测效果较佳，但是这五种病灶的检测均是在 ResNet 特征和朴素贝叶斯分类器的组合下达到最佳效果。而对于 NNF 特征，在实验时设计该特征的目的是为了加强对亮斑等图案的检测，实验结果显示并未达到想象的效果。通过观察训练集标签，发现后三种病灶出现的频率很小，且有较大概率三者同时出现，推测这种联系会在后续实验中产生影响。</p>
+<h3 id="DR转诊"><a href="#DR转诊" class="headerlink" title="DR转诊"></a>DR转诊</h3><p>DR 分级达到 2 及以上时，需要进行转诊，否则不需要。在 DR 转诊中， 本文对训练集、验证集的标签做了处理，将 DR 分级大于等于 2 的标记为 1，否则标记为 0，构成一个二分类问题。</p>
+<h4 id="特征构造-1"><a href="#特征构造-1" class="headerlink" title="特征构造"></a>特征构造</h4><p>++【Lesions特征】++</p>
+<p>考虑到病灶和 DR 分级之间具有因果关系，故将“病灶检测”中得到的结果 作为特征用于 DR 转诊。对于每一张眼底彩照，有 8 种可能病灶，若该眼底彩照被预测为具有该病灶，则对应病灶维度值为 1， 否则为 0。这样对每一张眼底彩照，可以构造出一个 8 维的 0-1 向量。对于训练集和测试集中的数据，同样用“病灶检测”中的模型和特征进行训练，得到预测的 Lesions 特征。</p>
+<p>++【ResNet特征+NNF特征+Lesions特征】++</p>
+<p>此处采用的 NNF 特征和“病灶检测”中的 NNF 特征相同；拼接 ResNet 特征、NNF 特征和 Lesions 特征，得到648 维特征。</p>
+<h4 id="实验结果-1"><a href="#实验结果-1" class="headerlink" title="实验结果"></a>实验结果</h4><p>Lesions 特征和朴素贝叶斯分类器的组合达到了最佳效果，此时的 AUC score 为 0.732。 实际上，本文曾尝试使用训练集和验证集中人工标定的病灶标签作为特征，采用朴素贝叶斯分类器对 DR 进行分级，结果显示准确率达到 0.96，这进一步说明了病灶和 DR 分级之间的紧密联系。此处 Lesions 的特征维度是所有特征中最小的，而预测效果最佳，与常识相符，从训练代价的角度考虑也是较为理想的。</p>
+<h3 id="DR分级"><a href="#DR分级" class="headerlink" title="DR分级"></a>DR分级</h3><p>针对 DR 分级有两种思路。一， 构造特征，直接进行分级； 二， 根据 DR 转诊的预测结果，将 DR 分级问题分成两个子问题：对于 DR 转诊预测结果为 1 的， 其 DR 分级为 2,3,4， 故可视为三分类问题；对于转诊预测结果为 0 的，其 DR 分级为 0 或 1，可视为二分类问题。</p>
+<h4 id="实验结果-2"><a href="#实验结果-2" class="headerlink" title="实验结果"></a>实验结果</h4><p>直接分级情况下，Lesions 特征和逻辑斯蒂回归模型组合得到最佳分级准确率，结果为 0.582。和 DR 转诊预测情况相似， 此处也是维度最小的 Lesions 特征取得了最佳训练效果。</p>
+<p>间接分类的实验结果中， 对于 DR 级别为 0 或 1 的图片分类效果较差， 原因可能为： 转诊分类时，划分不需要转诊的类别时即有了较大偏差；在对不需要转诊的图片进行进一步分类时， 特征之间的辨识度较低，分类效果较差。对于 DR 级别为 2,3,4 的图片分类效果较好，基于 Lesions 特征和逻辑斯蒂回归模型进行分类，准确率达到 0.845。</p>
+<p>两种不同类型的分类准确率一个低于直接分类准确率，一个高于直接分类，合并两类分类结果计算准确率，其最终准确率为 0.752，高于直接分类结果。</p>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>异常点增强中，仅对较亮的异常点进行了增强，忽略了对暗部的处理。另外，用于提取特 征的图象是一张二值图片，只保留了某些边缘的位置信息，其余很多信息都丢失了，从这 一角度考虑，采用边缘检测之前的图象用于生成 NNF 特征更佳。用于特征提取的卷积神经网络在设计和性能上有待提升。</p>
+<hr>
+<p><strong>【参考资料】</strong></p>
+<blockquote>
+<p>[1] WEI Q, LI X, YU W, et al. Learn to segment retinal lesions and beyond[EB/OL]. 2019.</p>
+</blockquote>
+
+  <p><a class="classtest-link" href="/tags/%E5%AE%9E%E9%AA%8C/" rel="tag">实验</a> — 2021年4月14日</p>
+  
+
+
+          <div class="row mt-2">
+  
+    <div class="eight columns">
+      <p id="madewith">Made with ❤ and
+        <a class="footer-link icon" href="https://hexo.io" target="_blank" style="text-decoration: none;" rel="noreferrer" aria-label="Hexo.io">
+        <svg class="hexo svg-hov" width="14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Hexo.js</title><path d="M12 .007L1.57 6.056V18.05L12 23.995l10.43-6.049V5.952L12 .007zm4.798 17.105l-.939.521-.939-.521V12.94H9.08v4.172l-.94.521-.938-.521V6.89l.939-.521.939.521v4.172h5.84V6.89l.94-.521.938.521v10.222z"/></svg>
+        </a>
+        
+        at <a href="https://en.wikipedia.org/wiki/Earth" target="_blank" rel="noreferrer">Earth</a>.</p>
+        
+    </div>
+
+    <!-- Sepcial thanks to https://simpleicons.org/ for the icons -->
+    <div class="four columns mb-3 posisi" >
+      
+      <a class="ml-0 footer-link icon" href="https://github.com/Zitong115" target="_blank" style="text-decoration: none" rel="noreferrer" aria-label="GitHub">
+        <svg class="github svg-hov" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      
+
+      
+
+      
+
+      
+
+      
+
+    </div>
+  
+</div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/js/nanobar.min.js"></script>
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+</body>
+
+</html>
