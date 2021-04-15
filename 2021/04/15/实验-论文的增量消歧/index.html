@@ -11,34 +11,34 @@
   <meta charset="utf-8">
 
   
-  <title>All Posts - Zitong</title>
+  <title>实验：论文的增量消歧</title>
   
-  <link rel="canonical" href="http://zitong115.github.io/archives/2021/04/">
+  <link rel="canonical" href="http://zitong115.github.io/2021/04/15/%E5%AE%9E%E9%AA%8C-%E8%AE%BA%E6%96%87%E7%9A%84%E5%A2%9E%E9%87%8F%E6%B6%88%E6%AD%A7/">
   
-  <meta name="description" content="">
+  <meta name="description" content="课程设计：论文的增量消歧 背景线上系统每天会新增大量的论文，如何准确快速的将论文分配到系统中已有作者档案，这是线上学术系统最亟待解决的问题。所以问题抽象定义为：给定一批新增论文以及系统已有的作者论文集，最终目的是把新增论文分配到正确的作者档案中。  数据预处理 对作者姓名进行标准化处理（1）如果是中">
   
   
   <meta name="author" content="Zitong">
   
-  <meta property="og:image" content="http://zitong115.github.io/images/thumbnail.jpg">
+  <meta property="og:image" content="http://zitong115.github.ioundefined">
   
   <meta property="og:site_name" content="ZITONG" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="All Posts - Zitong" />
+  <meta property="og:title" content="实验：论文的增量消歧" />
   
-  <meta property="og:description" content="">
+  <meta property="og:description" content="课程设计：论文的增量消歧 背景线上系统每天会新增大量的论文，如何准确快速的将论文分配到系统中已有作者档案，这是线上学术系统最亟待解决的问题。所以问题抽象定义为：给定一批新增论文以及系统已有的作者论文集，最终目的是把新增论文分配到正确的作者档案中。  数据预处理 对作者姓名进行标准化处理（1）如果是中">
   
-  <meta property="og:url" content="http://zitong115.github.io/archives/2021/04/" />
+  <meta property="og:url" content="http://zitong115.github.io/2021/04/15/%E5%AE%9E%E9%AA%8C-%E8%AE%BA%E6%96%87%E7%9A%84%E5%A2%9E%E9%87%8F%E6%B6%88%E6%AD%A7/" />
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="All Posts - Zitong">
+  <meta name="twitter:title" content="实验：论文的增量消歧">
   
-  <meta name="twitter:description" content="">
+  <meta name="twitter:description" content="课程设计：论文的增量消歧 背景线上系统每天会新增大量的论文，如何准确快速的将论文分配到系统中已有作者档案，这是线上学术系统最亟待解决的问题。所以问题抽象定义为：给定一批新增论文以及系统已有的作者论文集，最终目的是把新增论文分配到正确的作者档案中。  数据预处理 对作者姓名进行标准化处理（1）如果是中">
   
   
-  <meta name="twitter:image" content="http://zitong115.github.io/images/thumbnail.jpg">
+  <meta name="twitter:image" content="http://zitong115.github.ioundefined">
   
-  <meta name="twitter:url" content="http://zitong115.github.io/archives/2021/04/" />
+  <meta name="twitter:url" content="http://zitong115.github.io/2021/04/15/%E5%AE%9E%E9%AA%8C-%E8%AE%BA%E6%96%87%E7%9A%84%E5%A2%9E%E9%87%8F%E6%B6%88%E6%AD%A7/" />
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -189,160 +189,46 @@
 </div>
 
         <div class="trans">
-          
-<h2>All Posts</h2>
+            <h2>实验：论文的增量消歧</h2>
 
+  <p>课程设计：论文的增量消歧</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>线上系统每天会新增大量的论文，如何准确快速的将论文分配到系统中已有作者档案，这是线上学术系统最亟待解决的问题。所以问题抽象定义为：给定一批新增论文以及系统已有的作者论文集，最终目的是把新增论文分配到正确的作者档案中。</p>
+<hr>
+<h2 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h2><ol>
+<li><p>对作者姓名进行标准化处理<br>（1）如果是中文，转化为拼音。（2）去除空格、下划线等特殊字符。（3）全部转化为小写。（4）按字符序排序。</p>
+</li>
+<li><p>对机构进行标准化处理<br>（1）去掉停用词，如university等。（2）去掉非英文字符。（3）全部化小写。（4）按字符序排序。</p>
+</li>
+<li><p>建立作者姓名和ID的查找字典：如dict[‘fOPmpt43-zhen_zhou’] =‘zhen_zhou’ </p>
+</li>
+<li><p>建立作者发表文献的时间轴：如dict[‘liu_zheng’][‘2017’] = [paperid1,paperid2,…]</p>
+</li>
+<li><p>建立作者和机构的查找字典：如dict[‘ehhnouzz’][‘beijing ceramics china engineering fine materials new processing science tsinghua’] = [‘fOPmpt43-zhen_zhou’]</p>
+</li>
+<li><p>预训练word2vec：用Aminer paper库中论文的摘要构建语料库，用gensim对所得的语料进行预训练，得到500维的word2vec向量。</p>
+</li>
+</ol>
+<hr>
+<h2 id="最终使用算法"><a href="#最终使用算法" class="headerlink" title="最终使用算法"></a>最终使用算法</h2><p><img src="https://img9.doubanio.com/view/photo/l/ScyMzdHZdetT00cxNiMwTg/80333878/x2640380196.jpg" alt="算法流程"></p>
+<p>【两种相似度计算方法】</p>
+<ul>
+<li>基于repetition degree的相似度计算</li>
+</ul>
+<p> similarity based on repetition degree = set1 &amp; set2 / (set1 | set2)</p>
+<p>set1、set2为两个字符串的词语集合。<br>用这个方法可以用于计算机构与机构、论文与论文、作者与论文之间的相似度。</p>
+<ul>
+<li>基于word2vec的相似度计算</li>
+</ul>
+<p>（1）对于每一篇论文，取其title、venue、abstract、keyword，得到论文对应的词汇；</p>
+<p>（2）根据预训练的word2vec模型，计算所有词汇的平均word2vec值，作为论文向量；</p>
+<p>（3）对于每一位candidate author，遍历其所有论文，计算这些论文的论文向量，取平均，作为作者向量；</p>
+<p>（4）待分配论文与作者的相似度用待分配论文向量和作者向量的余弦距离来衡量。</p>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>名字匹配部分，目前仅仅考虑了名字中字母数量上的差别（阈值为2），但是像“Mike Smith”和“Mike S.”这样的名字在匹配上就会出错。</p>
+<p>模型参数调参实践。</p>
 
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2021年4月15日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2021/04/15/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E9%87%91%E8%89%B2%E7%9C%BC%E7%9D%9B%E7%9A%84%E6%98%A0%E5%83%8F/" class="">
-            
-              读书笔记: 《金色眼睛的映像》
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2021年4月15日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2021/04/15/%E5%AE%9E%E9%AA%8C-%E4%BA%BA%E6%B0%91%E5%A4%A7%E5%AD%A6%E7%A4%BE%E4%BC%9A%E7%BD%91%E7%BB%9C%E6%8C%96%E6%8E%98/" class="">
-            
-              实验：人民大学社会网络挖掘
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2021年4月15日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2021/04/15/%E5%AE%9E%E9%AA%8C-%E8%AE%BA%E6%96%87%E7%9A%84%E5%A2%9E%E9%87%8F%E6%B6%88%E6%AD%A7/" class="">
-            
-              实验：论文的增量消歧
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2021年4月14日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2021/04/14/%E5%AE%9E%E9%AA%8C-%E7%9C%BC%E5%BA%95%E5%BD%A9%E7%85%A7%E7%B3%96%E5%B0%BF%E7%97%85%E7%97%85%E5%8F%98%E5%88%86%E6%9C%9F%E8%AF%8A%E6%96%AD/" class="">
-            
-              实验：眼底彩照糖尿病病变分期诊断
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2021年4月14日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2021/04/14/%E5%B7%A5%E7%A8%8B-%E7%95%99%E8%A8%80%E6%9D%BF%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" class="">
-            
-              工程：留言板数据库设计与实现
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2021年4月13日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2021/04/13/%E9%9A%8F%E7%AC%94-%E8%A1%97%E5%A4%B4%E5%B0%8F%E5%90%83%E4%B8%80%E7%AA%A5/" class="">
-            
-              随笔：街头小吃一窥
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2021年4月13日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2021/04/13/%E7%94%BB%E9%9B%86-2021-Q1/" class="">
-            
-              画集：2021-Q1
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2021年4月13日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2021/04/13/%E8%A7%82%E5%BD%B1%E7%AC%94%E8%AE%B0-%E7%AD%89%E5%BE%85%E8%B6%85%E4%BA%BA/" class="">
-            
-              观影笔记：《等待超人》
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2021年4月13日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2021/04/13/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E9%93%B6%E6%B2%B3%E7%B3%BB%E6%90%AD%E8%BD%A6%E5%AE%A2%E6%8C%87%E5%8D%97/" class="">
-            
-              读书笔记: 《银河系搭车客指南》
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-<div class="pagination-bar">
-  <ul class="pagination">
-    
-    
-  </ul>
-</div>
+  <p><a class="classtest-link" href="/tags/%E5%AE%9E%E9%AA%8C/" rel="tag">实验</a> — 2021年4月15日</p>
+  
 
 
           <div class="row mt-2">

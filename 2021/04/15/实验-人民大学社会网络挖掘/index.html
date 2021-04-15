@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+
+  
+  <title>实验：人民大学社会网络挖掘</title>
+  
+  <link rel="canonical" href="http://zitong115.github.io/2021/04/15/%E5%AE%9E%E9%AA%8C-%E4%BA%BA%E6%B0%91%E5%A4%A7%E5%AD%A6%E7%A4%BE%E4%BC%9A%E7%BD%91%E7%BB%9C%E6%8C%96%E6%8E%98/">
+  
+  <meta name="description" content="《网络群体与市场》课程设计：人民大学社会网络挖掘 背景随着互联网的发展，个体之间的联系也从物理层面展开，出现了新的联系。两个人之间的关联，不仅可以从一次交谈、一封电子邮件建立，也可以从同时出现在一条新闻中建立。本次课程设计利用来自人民大学新闻网的新闻数据，将人物抽象为网络图。在图的层面，对人物之间的">
+  
+  
+  <meta name="author" content="Zitong">
+  
+  <meta property="og:image" content="http://zitong115.github.ioundefined">
+  
+  <meta property="og:site_name" content="ZITONG" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="实验：人民大学社会网络挖掘" />
+  
+  <meta property="og:description" content="《网络群体与市场》课程设计：人民大学社会网络挖掘 背景随着互联网的发展，个体之间的联系也从物理层面展开，出现了新的联系。两个人之间的关联，不仅可以从一次交谈、一封电子邮件建立，也可以从同时出现在一条新闻中建立。本次课程设计利用来自人民大学新闻网的新闻数据，将人物抽象为网络图。在图的层面，对人物之间的">
+  
+  <meta property="og:url" content="http://zitong115.github.io/2021/04/15/%E5%AE%9E%E9%AA%8C-%E4%BA%BA%E6%B0%91%E5%A4%A7%E5%AD%A6%E7%A4%BE%E4%BC%9A%E7%BD%91%E7%BB%9C%E6%8C%96%E6%8E%98/" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="实验：人民大学社会网络挖掘">
+  
+  <meta name="twitter:description" content="《网络群体与市场》课程设计：人民大学社会网络挖掘 背景随着互联网的发展，个体之间的联系也从物理层面展开，出现了新的联系。两个人之间的关联，不仅可以从一次交谈、一封电子邮件建立，也可以从同时出现在一条新闻中建立。本次课程设计利用来自人民大学新闻网的新闻数据，将人物抽象为网络图。在图的层面，对人物之间的">
+  
+  
+  <meta name="twitter:image" content="http://zitong115.github.ioundefined">
+  
+  <meta name="twitter:url" content="http://zitong115.github.io/2021/04/15/%E5%AE%9E%E9%AA%8C-%E4%BA%BA%E6%B0%91%E5%A4%A7%E5%AD%A6%E7%A4%BE%E4%BC%9A%E7%BD%91%E7%BB%9C%E6%8C%96%E6%8E%98/" />
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="../fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/prism-dark.css">
+
+  
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+
+  <!-- User css -->
+  
+  
+<link rel="stylesheet" href="/css/user.css">
+
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon3.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #0FA0CE;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #0FA0CE 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #0FA0CE;
+  }
+  .nanobar .bar {
+    background: #0FA0CE;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #0FA0CE;
+    border-color: #0FA0CE;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #0FA0CE;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">🌑</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>☀️</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
+  </div>
+
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      Hi Folks.
+    </h1>
+  </div>
+
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+          
+          <a href="/works" class="ml">Works</a>
+          
+        
+          
+          <a href="/about" class="ml">About</a>
+          
+        
+        
+          
+            <a href="mailto:lizitong.cc@foxmail.com" target="_blank" class="ml">Email</a>
+          
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
+
+        <div class="trans">
+            <h2>实验：人民大学社会网络挖掘</h2>
+
+  <p>《网络群体与市场》课程设计：人民大学社会网络挖掘</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>随着互联网的发展，个体之间的联系也从物理层面展开，出现了新的联系。两个人之间的关联，不仅可以从一次交谈、一封电子邮件建立，也可以从同时出现在一条新闻中建立。本次课程设计利用来自人民大学新闻网的新闻数据，将人物抽象为网络图。在图的层面，对人物之间的社会关系进行分析。</p>
+<hr>
+<h2 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h2><p>所用新闻数据来自中国人民大学新闻网。原始数据中包括新闻编号、发表时间、标题、浏览次数、作者、以及正文内容。 </p>
+<p>预处理步骤如下：</p>
+<ol>
+<li>获取正文信息。</li>
+<li>对正文内容进行jieba分词并人工校准。此处根据分出词语的词性分别将词语归入不同的字典中，并统计词语在新闻中出现的次数。若词语在一篇新闻中出现，即计一次，在同一篇新闻中多次出现则次数不累加。</li>
+<li>建立边权字典。对同一篇新闻中出现的所有人名进行组合，对应的二元组作为字典的键，字典的值为共同出现在新闻中的次数，可作为后来建图的边权。</li>
+<li>读取边权字典。其中，字典的键为两个人名（节点），字典的值为人名同时出现的新闻数（边权）。根据字典的每一项，将带权边加入社交网络图中，使用工具为networkx。</li>
+</ol>
+<hr>
+<h2 id="基础分析"><a href="#基础分析" class="headerlink" title="基础分析"></a>基础分析</h2><p>人物图节点数为29865，边数为716921，联通子图数为15，最大联通子图大小为29832。据此可以推测图的结构，即一个巨大的连通分支周边有若干微型连通分支。</p>
+<p>机构的建图规则与人物图相同，即若两个机构在同一篇新闻中出现，则两机构在图中相关联。机构图的节点数为2263，边数为82104，连通子图数为1，最大连通子图大小为2263。</p>
+<hr>
+<h2 id="其他分析"><a href="#其他分析" class="headerlink" title="其他分析"></a>其他分析</h2><h3 id="pagerank"><a href="#pagerank" class="headerlink" title="pagerank"></a>pagerank</h3><p>已知有向图的pagerank计算公式如下：</p>
+<pre class="line-numbers language-math" data-language="math"><code class="language-math">PR\left(p_i\right)&#x3D;\frac&#123;1-d&#125;&#123;n&#125;+d\sum_&#123;p_j\epsilon M(p_i)&#125;\frac&#123;PR(p_j)&#125;&#123;L(p_j)&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>首先，通过networkx的to_directed方法将无向图转化为有向图。然后，调用pagerank方法，计算各个节点的pagerank值。<br>最后，每个节点值的pagerank值计算完毕后，使用sorted函数对形式为{节点：pagerank值}的字典进行降序排序，输出前20个节点，即pagerank值最大的前20个节点。</p>
+<p>分析发现，热门人物、机构和影响力最大的人物、机构有很高的重合度。也就是说，一个人或机构在新闻中出现的频率越高，其影响力也往往就越大。</p>
+<p>在此基础上，计算了在一篇新闻中，若出现了一个影响力排在前20为的机构名，则出现影响力排名前20位人物名的概率。具体计算方式为：统计新闻中出现了强影响力机构和既出现强影响力机构、又出现强影响力人物的次数，次数不重复，即多次在新闻中出现也只计一次。计算后者和前者的比值，最终得到重合比例为93.48%。即若一篇新闻中出现强影响力机构，则出现强影响力人物的概率为93.48%。</p>
+<p>与之相对称的，计算了在一篇新闻中，若出现了一个影响力排在前20为的人名，则出现影响力排名前20位机构名的概率，其值为72.85%。</p>
+<p>据此分析，强影响力机构与强影响力人物之间有着很强的关联性。尽管强影响力机构和强影响力人物同时出现的概率很高（超过了50%），但是，若一个机构是强影响力机构、则与其同时出现的人物是强影响力人物的可能性大于若一个人是强影响力人物、则与其同时出现的机构是强影响力机构的可能性。例如，若“习近平”出现在一篇新闻中，则这篇新闻很可能出现强影响力机构如“中国人民大学”“中国共产党”“国务院”等，但出现的可能性小于若“中国人民大学”“中国共产党”“国务院”出现在一篇新闻中，则这篇新闻出现“习近平”的概率。</p>
+<h3 id="三元闭包验证"><a href="#三元闭包验证" class="headerlink" title="三元闭包验证"></a>三元闭包验证</h3><p>三元闭包通过检测共同好友数和成为好友之间的概率关系来验证。对三元闭包验证的基本思路如下：</p>
+<p>对社交网络图G中的节点进行遍历，记每一个遍历到的节点为a，a的邻居节点集合为M(a)。对M(a)中的节点进行遍历，记遍历到的节点为b，则a、b之间有一条相连的边。记b的邻居节点集合为M(b)，对M(b)中的节点进行遍历，记遍历到的节点为c。若a、c之间存在边，则a、b之间存在一个共同好友c。</p>
+<p>据此，通过对G中的好友对(a,b)进行计算，可得(a,b)的共同好友c的数目。用一个以c的数目为键、好友对的数目为值的字典来存储所得结果，则每一个共同好友数量对应的好友对数量除以G中总共的好友对数量（即边数），即可得成为好友的概率。</p>
+<p>在程序实际运行过程中，对节点进行了选择。例如，只对由出现频数大于5、大于10、大于50的节点构成的节点对进行统计。另一方面，出现频数过小的点，在图中出于边缘地带，认为舍去能提高图分析的准确性。</p>
+<p>结果发现，节点出现频数不小于50时，共同好友数≥10的节点对数: 无共同好友的节点对数=1.863:1。</p>
+<h3 id="节点的聚集系数"><a href="#节点的聚集系数" class="headerlink" title="节点的聚集系数"></a>节点的聚集系数</h3><p>无向图中，聚集系数的计算公式为：</p>
+<pre class="line-numbers language-math" data-language="math"><code class="language-math">C(v)&#x3D;\frac&#123;E(M(v))&#125;&#123;\complement_&#123;degree(v)&#125;^2&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>其中，E(M(v))表示v的邻居节点中存在的边数，degree(v)表示v的度数。</p>
+<p>根据此计算公式，对每个节点的所有邻居进行循环遍历，找出其中存在边的邻居数，最后除以邻居之间可以存在的最大边数，便可得到每个节点的聚集系数。</p>
+<p>对聚集系数进行排序，最后输出聚集系数最大的前10个节点。</p>
+<p>在结果中，许多节点有着相同的聚集系数。其中，度数较多、出现频数较高节点的聚集系数低，其原因可能是邻居众多而邻居之间存在的关联边较少。但对于聚集系数高的节点群中，节点聚集系数存在高一致性这一现象，推测原因是这些节点处在一个边缘的小连通分支中，而不是前面统计得到的有两万八千多个节点的大连通分支中。这些处在小连通分支里的节点邻居与邻居之间联系紧密，从而得到了较高的聚集系数。</p>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>《网络群体与市场》，课程包含的内容除了图分析以外，还有部分运筹学和社交网络的知识，比如拍卖定价、小世界理论等等。收获蛮多的一门课。</p>
+
+  <p><a class="classtest-link" href="/tags/%E5%AE%9E%E9%AA%8C/" rel="tag">实验</a> — 2021年4月15日</p>
+  
+
+
+          <div class="row mt-2">
+  
+    <div class="eight columns">
+      <p id="madewith">Made with ❤ and
+        <a class="footer-link icon" href="https://hexo.io" target="_blank" style="text-decoration: none;" rel="noreferrer" aria-label="Hexo.io">
+        <svg class="hexo svg-hov" width="14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Hexo.js</title><path d="M12 .007L1.57 6.056V18.05L12 23.995l10.43-6.049V5.952L12 .007zm4.798 17.105l-.939.521-.939-.521V12.94H9.08v4.172l-.94.521-.938-.521V6.89l.939-.521.939.521v4.172h5.84V6.89l.94-.521.938.521v10.222z"/></svg>
+        </a>
+        
+        at <a href="https://en.wikipedia.org/wiki/Earth" target="_blank" rel="noreferrer">Earth</a>.</p>
+        
+    </div>
+
+    <!-- Sepcial thanks to https://simpleicons.org/ for the icons -->
+    <div class="four columns mb-3 posisi" >
+      
+      <a class="ml-0 footer-link icon" href="https://github.com/Zitong115" target="_blank" style="text-decoration: none" rel="noreferrer" aria-label="GitHub">
+        <svg class="github svg-hov" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      
+
+      
+
+      
+
+      
+
+      
+
+    </div>
+  
+</div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/js/nanobar.min.js"></script>
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+</body>
+
+</html>

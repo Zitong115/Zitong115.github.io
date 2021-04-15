@@ -203,15 +203,15 @@
 <h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><p>本次课程设计所使用数据集来自文献《Learn to segment retinal lesions and beyond》[1]。数据集中的每张眼底彩照大小为 896px*896px，对于训练集和验证集中的图象，已给出其 DR 标签及病灶标签，另外，每张图像还给出了经自动定位得到的视盘、黄斑区域，其位置由划定矩形区域对角线上两点的 x、y 坐标表示。</p>
 <hr>
 <h2 id="模型建立"><a href="#模型建立" class="headerlink" title="模型建立"></a>模型建立</h2><h3 id="病灶检测"><a href="#病灶检测" class="headerlink" title="病灶检测"></a>病灶检测</h3><p>数据集中共有8种出现的病灶，分别是：cotton wool spots、neovascularization、retinal hemor-  rhage、hardexudate、microaneurysm、ﬁbrousproliferation、vitreoushemorrhage、preretinalhemorrhage。对于每一种病灶的检测，可以将其定义为一个二分类问题：0（没有该病灶）和 1（存在该病灶）。下面将从特征构造、模型训练和评估来阐述分类过程。</p>
-<h4 id="特征构造"><a href="#特征构造" class="headerlink" title="特征构造"></a>特征构造</h4><p>++【ResNet特征】++ </p>
+<h4 id="特征构造"><a href="#特征构造" class="headerlink" title="特征构造"></a>特征构造</h4><p>【ResNet特征】</p>
 <p>采用一个在ImageNet分类任务上训练好的卷积神经网络 (ResNet18) 为 DR 数据集中的每一张眼底图像提取了一个 512 维的特征向量。</p>
-<p>++【Histogram特征】++ </p>
+<p>【Histogram特征】</p>
 <p>这一特征主要捕捉图象的色彩信息，构造步骤如下：</p>
 <p>(a)  对于每一张眼底彩照，首先将图象按非灰度图读取。</p>
 <p>(b)  对图象进行放缩，将长度和宽度均缩小448px。</p>
 <p>(c)  对 RGB 三个通道，每个通道以 0 255 为范围、128 为桶数提取统计色彩直方图数据。</p>
 <p>(d)  将三个通道的直方图统计数据进行拼接，得到 384 维的直方图特征。</p>
-<p>++【NNF特征】++</p>
+<p>【NNF特征】</p>
 <p>考虑到图象上的白色团块或斑点等非正常图案是进行病灶检测的重要的依据，故在这一特征的提取中，对这些非正常图案做了加强，希望所构造的特征更强调这些图案信息。NNF特征的构造步骤如下：</p>
 <p>(a)  为避免眼底亮部对异常点检测的干扰，首先从所给数据中读取眼底坐标，用该坐标对应的矩形遮掉眼底，矩形颜色与眼底彩照上矩形左上角的颜色相同。</p>
 <p>(b)  为增强图象中较亮的斑点，用边长为 7 的圆形滤波器对图象进行最大值滤波。</p>
@@ -221,11 +221,11 @@
 <p>(e)  为了较小训练一个基于(d)处理后的图象（作为特征） 和图象 DR 分级数据（作为标签） 的卷积神经网络，用于对图象进行特征提取。卷积神经网络示意图如下：</p>
 <p><img src="https://img3.doubanio.com/view/photo/l/RMveR2MTzlel_e9prVgTgA/80333878/x2640228280.jpg" alt="2"></p>
 <p>第一层卷积使用的激活函数为 Relu，第二层卷积使用的激活函数为 Tanh。得到 256 维特征向量后， 以0.5的概率丢弃。在训练过程中，256维特征向量与最终用于 DR 分级的 5 维向量全连接。训练的最终准确率在 0.6 上下。<br>用该卷积神经网络对第(d)步的图象进行处理，得到256 维特征向量。</p>
-<p>++【ResNet特征+Histogram特征】++</p>
+<p>【ResNet特征+Histogram特征】</p>
 <p>拼接 ResNet 特征和 Histogram 特征，得到 896 维特征。</p>
-<p>++【ResNet特征+NNF特征】++</p>
+<p>【ResNet特征+NNF特征】</p>
 <p>拼接 ResNet 特征和 NNF 特征，得到 768 维特征。</p>
-<p>++【Histogram特征+NNF特征】++ </p>
+<p>【Histogram特征+NNF特征】</p>
 <p>拼接 Histogram 特征和 NNF 特征，得到640 维特征。</p>
 <h4 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h4><p>本文中用于训练的模型有logistic regression、naïve bayes、GBDT。其中，三种模型的参数如下：</p>
 <ul>
@@ -236,9 +236,9 @@
 <p>对于每一个病灶，将六种不同特征代入三种模型中分别进行训练。以验证集中，模型预测结果的 F1 score高低作为挑选标准，选出具有最高 F1 score的特征、模型组合，作为针对该病灶的最佳预测方式。</p>
 <h4 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h4><p>实验结果中，八种病灶的平均 F1 为 0.766。cotton wool spots 和 microaneurysm 的预测效果较 差，ﬁbrous proliferation、vitreous hemorrhage、preretinal hemorrhage 的预测效果较佳，但是这五种病灶的检测均是在 ResNet 特征和朴素贝叶斯分类器的组合下达到最佳效果。而对于 NNF 特征，在实验时设计该特征的目的是为了加强对亮斑等图案的检测，实验结果显示并未达到想象的效果。通过观察训练集标签，发现后三种病灶出现的频率很小，且有较大概率三者同时出现，推测这种联系会在后续实验中产生影响。</p>
 <h3 id="DR转诊"><a href="#DR转诊" class="headerlink" title="DR转诊"></a>DR转诊</h3><p>DR 分级达到 2 及以上时，需要进行转诊，否则不需要。在 DR 转诊中， 本文对训练集、验证集的标签做了处理，将 DR 分级大于等于 2 的标记为 1，否则标记为 0，构成一个二分类问题。</p>
-<h4 id="特征构造-1"><a href="#特征构造-1" class="headerlink" title="特征构造"></a>特征构造</h4><p>++【Lesions特征】++</p>
+<h4 id="特征构造-1"><a href="#特征构造-1" class="headerlink" title="特征构造"></a>特征构造</h4><p>【Lesions特征】</p>
 <p>考虑到病灶和 DR 分级之间具有因果关系，故将“病灶检测”中得到的结果 作为特征用于 DR 转诊。对于每一张眼底彩照，有 8 种可能病灶，若该眼底彩照被预测为具有该病灶，则对应病灶维度值为 1， 否则为 0。这样对每一张眼底彩照，可以构造出一个 8 维的 0-1 向量。对于训练集和测试集中的数据，同样用“病灶检测”中的模型和特征进行训练，得到预测的 Lesions 特征。</p>
-<p>++【ResNet特征+NNF特征+Lesions特征】++</p>
+<p>【ResNet特征+NNF特征+Lesions特征】</p>
 <p>此处采用的 NNF 特征和“病灶检测”中的 NNF 特征相同；拼接 ResNet 特征、NNF 特征和 Lesions 特征，得到648 维特征。</p>
 <h4 id="实验结果-1"><a href="#实验结果-1" class="headerlink" title="实验结果"></a>实验结果</h4><p>Lesions 特征和朴素贝叶斯分类器的组合达到了最佳效果，此时的 AUC score 为 0.732。 实际上，本文曾尝试使用训练集和验证集中人工标定的病灶标签作为特征，采用朴素贝叶斯分类器对 DR 进行分级，结果显示准确率达到 0.96，这进一步说明了病灶和 DR 分级之间的紧密联系。此处 Lesions 的特征维度是所有特征中最小的，而预测效果最佳，与常识相符，从训练代价的角度考虑也是较为理想的。</p>
 <h3 id="DR分级"><a href="#DR分级" class="headerlink" title="DR分级"></a>DR分级</h3><p>针对 DR 分级有两种思路。一， 构造特征，直接进行分级； 二， 根据 DR 转诊的预测结果，将 DR 分级问题分成两个子问题：对于 DR 转诊预测结果为 1 的， 其 DR 分级为 2,3,4， 故可视为三分类问题；对于转诊预测结果为 0 的，其 DR 分级为 0 或 1，可视为二分类问题。</p>
