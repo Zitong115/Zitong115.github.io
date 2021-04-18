@@ -11,34 +11,34 @@
   <meta charset="utf-8">
 
   
-  <title>ZITONG</title>
+  <title>学习笔记：2021.04.12.-2021.04.18.</title>
   
-  <link rel="canonical" href="http://zitong115.github.io/page/2/">
+  <link rel="canonical" href="http://zitong115.github.io/2021/04/18/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-20210412-20210418/">
   
-  <meta name="description" content="">
+  <meta name="description" content="# 深度学习样本标签比例不均衡的处理方法 不要修改使用训练的标签分布比例，比如原本是10:1的数据调整成1:1的数据送进去训练。要让模型学习全部的数据，因为数据的分布也是模型要学习的一部分，不能破坏这一点。 可以考虑换一个loss function，比如参考这篇论文《Learning Imbalan">
   
   
   <meta name="author" content="Zitong">
   
-  <meta property="og:image" content="http://zitong115.github.io/images/thumbnail.jpg">
+  <meta property="og:image" content="http://zitong115.github.ioundefined">
   
   <meta property="og:site_name" content="ZITONG" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="ZITONG" />
+  <meta property="og:title" content="学习笔记：2021.04.12.-2021.04.18." />
   
-  <meta property="og:description" content="">
+  <meta property="og:description" content="# 深度学习样本标签比例不均衡的处理方法 不要修改使用训练的标签分布比例，比如原本是10:1的数据调整成1:1的数据送进去训练。要让模型学习全部的数据，因为数据的分布也是模型要学习的一部分，不能破坏这一点。 可以考虑换一个loss function，比如参考这篇论文《Learning Imbalan">
   
-  <meta property="og:url" content="http://zitong115.github.io/page/2/" />
+  <meta property="og:url" content="http://zitong115.github.io/2021/04/18/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-20210412-20210418/" />
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ZITONG">
+  <meta name="twitter:title" content="学习笔记：2021.04.12.-2021.04.18.">
   
-  <meta name="twitter:description" content="">
+  <meta name="twitter:description" content="# 深度学习样本标签比例不均衡的处理方法 不要修改使用训练的标签分布比例，比如原本是10:1的数据调整成1:1的数据送进去训练。要让模型学习全部的数据，因为数据的分布也是模型要学习的一部分，不能破坏这一点。 可以考虑换一个loss function，比如参考这篇论文《Learning Imbalan">
   
   
-  <meta name="twitter:image" content="http://zitong115.github.io/images/thumbnail.jpg">
+  <meta name="twitter:image" content="http://zitong115.github.ioundefined">
   
-  <meta name="twitter:url" content="http://zitong115.github.io/page/2/" />
+  <meta name="twitter:url" content="http://zitong115.github.io/2021/04/18/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-20210412-20210418/" />
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -189,76 +189,24 @@
 </div>
 
         <div class="trans">
-          <div class="row">
-  <div class="column">
-    <!-- Main information, edit it on theme/_config.yml -->
-    <h2 class="mb-2">Zitong</h2>
-    <p></p>
-    <p>Born in Lishui, Zhejiang province. Currently studying at Renmin University of China majoring in big data technology and data science. Will graduate in June, 2021 and continue to study here for a master&#39;s degree. The research field is privacy protection. Hobbies: writing stories and drawing (mostly with laptop).</p>
-  </div>
-</div>
+            <h2>学习笔记：2021.04.12.-2021.04.18.</h2>
 
-<h3>Recent Posts</h3>
+  <p><strong># 深度学习样本标签比例不均衡的处理方法</strong></p>
+<p>不要修改使用训练的标签分布比例，比如原本是10:1的数据调整成1:1的数据送进去训练。要让模型学习全部的数据，因为数据的分布也是模型要学习的一部分，不能破坏这一点。</p>
+<p>可以考虑换一个loss function，比如参考这篇论文《Learning Imbalanced Datasets with Label-Distribution-Aware Margin Loss》，里面的设计的loss function就挺好用的。可能也有别的方法。</p>
+<p><strong># 为什么样本标签比例相同的数据，最后训练的准确率却有很大差别？</strong></p>
+<p>样本标签比例相同，用于判断属于某一类的关键特征却可能有很大不同。比如有的类别判别模式比较清晰，有的比较模糊，这样的话后者的准确率就会变低。</p>
+<p><strong># PWM</strong></p>
+<p>位置权重矩阵position weight matrix (PWM)，是一种被广泛使用的转录因子识别基序的表示方法。它是一个N行4列的矩阵，在这个N行4列的矩阵中描述了每一个碱基在每一个位置上出现的频率。</p>
+<p><strong># github+hexo+godaddy建站</strong></p>
+<p>修改config文件中的deploy，用rsa处理后的git地址，这样每次deploy的时候就不用登录github帐号了。</p>
+<p>在godaddy上买域名，绑定到github仓库上时，网页更新会有延迟；刷新网页别忘了清除历史记录，不然就直接从历史记录里加载网页了。</p>
+<p><strong># pandas+matplotlib画箱线图</strong></p>
+<p>pandas.DataFrame.describe方法很好用！直接以Series格式输出中位数、四分位点、counting、标准差等统计数据。画箱线图的话可以直接调取pandas的画图方法。</p>
 
+  <p><a class="classtest-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a> — 2021年4月18日</p>
+  
 
-<div class="row">
-
-  <div class="three columns left lit">
-    <p class="bottom">2021年4月18日</p>
-  </div>
-  <div class="nine columns left mb-3">
-    <a href="/2021/04/18/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-20210412-20210418/" >
-      
-        学习笔记：2021.04.12.-2021.04.18.
-      
-    </a>
-  </div>
-</div>
-
-<div class="row">
-
-  <div class="three columns left lit">
-    <p class="bottom">2021年4月18日</p>
-  </div>
-  <div class="nine columns left mb-3">
-    <a href="/2021/04/18/%E8%A7%82%E5%BD%B1%E7%AC%94%E8%AE%B0-%E5%8D%81%E5%B9%B4%EF%BC%8C%E6%88%91%E4%BB%AC%E4%B8%80%E8%B5%B7%E7%BB%8F%E5%8E%86%E7%9A%84%E5%86%85%E5%AE%B9%E6%B5%AA%E6%BD%AE/" >
-      
-        观影笔记：《十年，我们一起经历的内容浪潮》
-      
-    </a>
-  </div>
-</div>
-
-<div class="row">
-
-  <div class="three columns left lit">
-    <p class="bottom">2021年4月18日</p>
-  </div>
-  <div class="nine columns left mb-3">
-    <a href="/2021/04/18/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E4%B8%80%E5%88%87%E7%9A%84%E4%B8%80%E5%88%87%EF%BC%8C%E9%83%BD%E4%BA%A4%E7%BB%99%E6%97%B6%E9%97%B4%E5%90%A7/" >
-      
-        读书笔记: 《一切的一切，都交给时间吧》
-      
-    </a>
-  </div>
-</div>
-
-<div class="row">
-
-  <div class="three columns left lit">
-    <p class="bottom">2021年4月17日</p>
-  </div>
-  <div class="nine columns left mb-3">
-    <a href="/2021/04/17/%E8%A7%82%E5%BD%B1%E7%AC%94%E8%AE%B0-%E5%B0%BC%E7%BD%97%E6%B2%B3%E4%B8%8A%E7%9A%84%E6%83%A8%E6%A1%88/" >
-      
-        观影笔记：《尼罗河上的惨案》
-      
-    </a>
-  </div>
-</div>
-
-
-<h4> <a href="/archives">All Posts</a></h4>
 
           <div class="row mt-2">
   
