@@ -11,34 +11,34 @@
   <meta charset="utf-8">
 
   
-  <title>All Posts - Zitong</title>
+  <title>学习笔记：2021.04.19.-2021.04.25.</title>
   
-  <link rel="canonical" href="http://zitong115.github.io/archives/2021/04/">
+  <link rel="canonical" href="http://zitong115.github.io/2021/04/25/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A20210419-20210425/">
   
-  <meta name="description" content="">
+  <meta name="description" content="【Pandas两个dataframe求差集】 Dataframe a,b有相同的属性。 a &amp;#x3D; a.append(b) a &amp;#x3D; a.append(b) a &amp;#x3D; a.drop_duplicates(keep &amp;#x3D; False)  append两次是为了在去重的时候">
   
   
   <meta name="author" content="Zitong">
   
-  <meta property="og:image" content="http://zitong115.github.io/images/thumbnail.jpg">
+  <meta property="og:image" content="http://zitong115.github.ioundefined">
   
   <meta property="og:site_name" content="ZITONG" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="All Posts - Zitong" />
+  <meta property="og:title" content="学习笔记：2021.04.19.-2021.04.25." />
   
-  <meta property="og:description" content="">
+  <meta property="og:description" content="【Pandas两个dataframe求差集】 Dataframe a,b有相同的属性。 a &amp;#x3D; a.append(b) a &amp;#x3D; a.append(b) a &amp;#x3D; a.drop_duplicates(keep &amp;#x3D; False)  append两次是为了在去重的时候">
   
-  <meta property="og:url" content="http://zitong115.github.io/archives/2021/04/" />
+  <meta property="og:url" content="http://zitong115.github.io/2021/04/25/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A20210419-20210425/" />
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="All Posts - Zitong">
+  <meta name="twitter:title" content="学习笔记：2021.04.19.-2021.04.25.">
   
-  <meta name="twitter:description" content="">
+  <meta name="twitter:description" content="【Pandas两个dataframe求差集】 Dataframe a,b有相同的属性。 a &amp;#x3D; a.append(b) a &amp;#x3D; a.append(b) a &amp;#x3D; a.drop_duplicates(keep &amp;#x3D; False)  append两次是为了在去重的时候">
   
   
-  <meta name="twitter:image" content="http://zitong115.github.io/images/thumbnail.jpg">
+  <meta name="twitter:image" content="http://zitong115.github.ioundefined">
   
-  <meta name="twitter:url" content="http://zitong115.github.io/archives/2021/04/" />
+  <meta name="twitter:url" content="http://zitong115.github.io/2021/04/25/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A20210419-20210425/" />
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -189,186 +189,53 @@
 </div>
 
         <div class="trans">
-          
-<h2>All Posts</h2>
+            <h2>学习笔记：2021.04.19.-2021.04.25.</h2>
+
+  <p>【Pandas两个dataframe求差集】</p>
+<p>Dataframe a,b有相同的属性。</p>
+<pre class="line-numbers language-none"><code class="language-none">a &#x3D; a.append(b)
+a &#x3D; a.append(b)
+a &#x3D; a.drop_duplicates(keep &#x3D; False)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>append两次是为了在去重的时候把b的数据也可以删掉，这样一来剩下的就是a-b的数据。</p>
+<p>【Jupyter上安装使用R语言】</p>
+<p>直接在Anaconda cmd里输入</p>
+<pre class="line-numbers language-none"><code class="language-none">conda install -c r r-essentials<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>注意用管理员权限运行cmd。安装完就可以直接在notebook上运行R了，整个安装用时大概一个小时。</p>
+<p>【简单R命令】</p>
+<p>读取文件并赋值：</p>
+<pre class="line-numbers language-none"><code class="language-none">input &lt;- read.table(filename, header &#x3D; T, row.names &#x3D; 1)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>循环：</p>
+<pre class="line-numbers language-none"><code class="language-none">for(file in input_list)&#123;
+    matrix_input &lt;- read.table(paste0(&#39;attr_score_0vs4_txt_pfm&#x2F;&#39;,file),header &#x3D; T,row.names &#x3D; 1)
+    matrix_input &lt;- as.matrix(matrix_input)
+    p &lt;- ggseqlogo( matrix_input ,method &#x3D; &#39;prob&#39;)
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>保存图片：</p>
+<pre class="line-numbers language-none"><code class="language-none">ggsave(path,plot &#x3D; p)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
-    <article>
-      <div class="row">
+<p>连接字符串（拼凑文件名的时候用到）：</p>
+<pre class="line-numbers language-none"><code class="language-none">paste0(SaveDR,unlist(strsplit(file,split&#x3D;&quot;\\.&quot;))[1],&quot;.png&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-        <div class="three columns left lit">
-          <p class="bottom">2021年4月25日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2021/04/25/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A20210419-20210425/" class="">
-            
-              学习笔记：2021.04.19.-2021.04.25.
-            
-          </a>
-        </div>
-      </div>
-    </article>
 
-    <article>
-      <div class="row">
+<p>【Android页面之间跳转传参】</p>
+<p>传递数据：</p>
+<pre class="line-numbers language-none"><code class="language-none">Intent intent &#x3D; new Intent(this, SecondActivity.class);
+intent.putExtra(&quot;name&quot;, &quot;testmessage&quot;);
+startActivity(intent);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-        <div class="three columns left lit">
-          <p class="bottom">2021年4月25日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2021/04/25/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E8%A1%8C%C2%B7%E5%BD%B1%E4%B8%8D%E7%A6%BB/" class="">
-            
-              读书笔记: 《行·影不离：阮义忠欧洲旅行手札》
-            
-          </a>
-        </div>
-      </div>
-    </article>
+<p>接收数据：</p>
+<pre class="line-numbers language-none"><code class="language-none">Intent intent &#x3D; getIntent();
+String name &#x3D; intent.getStringExtra(&quot;name&quot;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-    <article>
-      <div class="row">
+<p>【为什么诺贝尔经济学奖平均获奖年龄最大】</p>
+<p>因为经济学家提出一个理论学说，需要很长时间来验证。市场的周期很长。</p>
 
-        <div class="three columns left lit">
-          <p class="bottom">2021年4月25日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2021/04/25/%E7%BF%BB%E8%AF%91-%E3%80%8ANaturally%20Tan%E3%80%8B-%20Chapter%204/" class="">
-            
-              翻译：《Naturally Tan》第四章：宝莱坞
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2021年4月24日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2021/04/24/%E8%A7%82%E5%BD%B1%E7%AC%94%E8%AE%B0-%E9%98%BF%E5%87%A1%E8%BE%BE/" class="">
-            
-              观影笔记：《阿凡达》
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2021年4月24日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2021/04/24/%E7%BF%BB%E8%AF%91-%E3%80%8ANaturally%20Tan%E3%80%8B-%20Chapter%203/" class="">
-            
-              翻译：《Naturally Tan》第三章：漱口水
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2021年4月23日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2021/04/23/%E7%BF%BB%E8%AF%91-%E3%80%8ANaturally%20Tan%E3%80%8B-%20Chapter%202%20-%20PSA/" class="">
-            
-              翻译：《Naturally Tan》第二章：牛仔裤（附记）
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2021年4月23日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2021/04/23/%E7%94%BB%E9%9B%86-2021-Q1/" class="">
-            
-              画集：2021-Q1
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2021年4月22日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2021/04/22/%E7%BF%BB%E8%AF%91-%E3%80%8ANaturally%20Tan%E3%80%8B-%20Chapter%202/" class="">
-            
-              翻译：《Naturally Tan》第二章：牛仔裤
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2021年4月21日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2021/04/21/%E7%BF%BB%E8%AF%91-%E3%80%8ANaturally%20Tan%E3%80%8B-%20Chapter%201%20-%20Part%20III/" class="">
-            
-              翻译：《Naturally Tan》第一章：沙尔瓦-克米兹（第3部分）
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2021年4月20日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2021/04/20/%E7%94%BB%E9%9B%86-2020-Q3~Q4/" class="">
-            
-              画集：2020-Q3~Q4
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-<div class="pagination-bar">
-  <ul class="pagination">
-    
-    
-
-    <a class="" href="/archives/2021/04/page/2/">
-      <span>Older</span>
-      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-        <path fill-rule="evenodd" d="M4 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5A.5.5 0 0 0 4 8z" />
-      </svg>
-    </a>
-
-    
-  </ul>
-</div>
+  <p><a class="classtest-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a> — 2021年4月25日</p>
+  
 
 
           <div class="row mt-2">
