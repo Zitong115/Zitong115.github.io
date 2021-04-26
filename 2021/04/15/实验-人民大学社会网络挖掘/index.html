@@ -207,7 +207,7 @@
 <p>机构的建图规则与人物图相同，即若两个机构在同一篇新闻中出现，则两机构在图中相关联。机构图的节点数为2263，边数为82104，连通子图数为1，最大连通子图大小为2263。</p>
 <hr>
 <h2 id="其他分析"><a href="#其他分析" class="headerlink" title="其他分析"></a>其他分析</h2><h3 id="pagerank"><a href="#pagerank" class="headerlink" title="pagerank"></a>pagerank</h3><p>已知有向图的pagerank计算公式如下：</p>
-<p><img src="https://img3.doubanio.com/view/photo/l/rnUnwKKQePNa21lzug3DaQ/80333878/x2640399351.jpg#pic_center" alt="pagerank"></p>
+<p><img src="https://i.loli.net/2021/04/26/hNtb26A5UvX3Pnj.png#pic_center" alt="pagerank"></p>
 <p>首先，通过networkx的to_directed方法将无向图转化为有向图。然后，调用pagerank方法，计算各个节点的pagerank值。<br>最后，每个节点值的pagerank值计算完毕后，使用sorted函数对形式为{节点：pagerank值}的字典进行降序排序，输出前20个节点，即pagerank值最大的前20个节点。</p>
 <p>分析发现，热门人物、机构和影响力最大的人物、机构有很高的重合度。也就是说，一个人或机构在新闻中出现的频率越高，其影响力也往往就越大。</p>
 <p>在此基础上，计算了在一篇新闻中，若出现了一个影响力排在前20为的机构名，则出现影响力排名前20位人物名的概率。具体计算方式为：统计新闻中出现了强影响力机构和既出现强影响力机构、又出现强影响力人物的次数，次数不重复，即多次在新闻中出现也只计一次。计算后者和前者的比值，最终得到重合比例为93.48%。即若一篇新闻中出现强影响力机构，则出现强影响力人物的概率为93.48%。</p>
@@ -219,7 +219,7 @@
 <p>在程序实际运行过程中，对节点进行了选择。例如，只对由出现频数大于5、大于10、大于50的节点构成的节点对进行统计。另一方面，出现频数过小的点，在图中出于边缘地带，认为舍去能提高图分析的准确性。</p>
 <p>结果发现，节点出现频数不小于50时，共同好友数≥10的节点对数: 无共同好友的节点对数=1.863:1。</p>
 <h3 id="节点的聚集系数"><a href="#节点的聚集系数" class="headerlink" title="节点的聚集系数"></a>节点的聚集系数</h3><p>无向图中，聚集系数的计算公式为：</p>
-<p><img src="https://img2.doubanio.com/view/photo/l/XUrWnaffHI9W3117fjiaQw/80333878/x2640399353.jpg#pic_center" alt="聚集系数"></p>
+<p><img src="https://i.loli.net/2021/04/26/FcHtNDBIobXmGqn.png#pic_center" alt="聚集系数"></p>
 <p>其中，E(M(v))表示v的邻居节点中存在的边数，degree(v)表示v的度数。</p>
 <p>根据此计算公式，对每个节点的所有邻居进行循环遍历，找出其中存在边的邻居数，最后除以邻居之间可以存在的最大边数，便可得到每个节点的聚集系数。</p>
 <p>对聚集系数进行排序，最后输出聚集系数最大的前10个节点。</p>

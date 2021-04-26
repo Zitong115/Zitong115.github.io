@@ -217,9 +217,9 @@
 <p>(b)  为增强图象中较亮的斑点，用边长为 7 的圆形滤波器对图象进行最大值滤波。</p>
 <p>(c)  对图象进行 canny 边缘检测，将高斯滤波的标准差设置为 0.7。</p>
 <p>(d)  缩小图象，将图象的长和宽缩小至224px。经过前四步处理，图象变化示意如下：</p>
-<p><img src="https://img9.doubanio.com/view/photo/l/BlfGQYevAwqkepeEtgfb6Q/80333878/x2640228215.jpg" alt="1"></p>
+<p><img src="https://i.loli.net/2021/04/26/1PEeZXSVaWctKGR.png" alt="1"></p>
 <p>(e)  为了较小训练一个基于(d)处理后的图象（作为特征） 和图象 DR 分级数据（作为标签） 的卷积神经网络，用于对图象进行特征提取。卷积神经网络示意图如下：</p>
-<p><img src="https://img3.doubanio.com/view/photo/l/RMveR2MTzlel_e9prVgTgA/80333878/x2640228280.jpg" alt="2"></p>
+<p><img src="https://i.loli.net/2021/04/26/6cITMUjXHCiZYAO.png" alt="2"></p>
 <p>第一层卷积使用的激活函数为 Relu，第二层卷积使用的激活函数为 Tanh。得到 256 维特征向量后， 以0.5的概率丢弃。在训练过程中，256维特征向量与最终用于 DR 分级的 5 维向量全连接。训练的最终准确率在 0.6 上下。<br>用该卷积神经网络对第(d)步的图象进行处理，得到256 维特征向量。</p>
 <p>【ResNet特征+Histogram特征】</p>
 <p>拼接 ResNet 特征和 Histogram 特征，得到 896 维特征。</p>

@@ -192,9 +192,9 @@
             <h2>工程：留言板数据库设计与实现</h2>
 
   <p>《数据库系统概论》课程设计：论坛留言管理系统</p>
-<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><p><img src="https://img9.doubanio.com/view/photo/l/K2eXQr0iu-J2s7GUor6rkA/80333878/x2640191651.jpg#pic_center" alt="需求分析"></p>
+<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><p><img src="https://i.loli.net/2021/04/26/fBaLnVIHXrdu712.png#pic_center" alt="需求分析"></p>
 <h2 id="概念结构设计"><a href="#概念结构设计" class="headerlink" title="概念结构设计"></a>概念结构设计</h2><p>E-R图设计如下：</p>
-<p><img src="https://img9.doubanio.com/view/photo/l/fahwfwhiLvY40aG-O3cFlg/80333878/x2640192689.jpg#pic_center" alt="概念设计"></p>
+<p><img src="https://i.loli.net/2021/04/26/b5XNzTpkaRYu4BI.png#pic_center" alt="概念设计"></p>
 <h2 id="逻辑结构设计"><a href="#逻辑结构设计" class="headerlink" title="逻辑结构设计"></a>逻辑结构设计</h2><p>依据概念结构设计中所设计的E-R图，可以得到如下的关系模式：</p>
 <ol>
 <li>   用户实体对应的关系模式<br>用户（用户ID，用户昵称，用户经验，用户等级，用户权限，用户密码，注册时间，用户状态）</li>
@@ -262,8 +262,8 @@ def home():
         return render_template(&#39;index.html&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>这是在网页中显示首页的代码。用户在浏览器中键入“127.0.0.1:5000/user/home”（其中/user/为蓝图前缀），也就是向该网址发送了一个方式为GET的请求。在flask框架中，收到该请求后，与之相关联的home( )函数开始执行，函数返回结果将展示在127.0.0.1:5000/user/home地址中。此处，home()函数返回了render_template(‘index.html’)，也就是将index.html文件作为结果显示在键入的地址中。</p>
-<h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><p><img src="https://img9.doubanio.com/view/photo/l/WwCZvLnYSuK2MKRSQ_QDUQ/80333878/x2640192694.jpg" alt="修改密码页"></p>
-<p><img src="https://img9.doubanio.com/view/photo/l/P5yRuvmKqVOQAgR5r78pIQ/80333878/x2640192696.jpg" alt="帖子列表"></p>
+<h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><p><img src="https://i.loli.net/2021/04/26/CxfXHjABIuUMYtG.png" alt="修改密码页"></p>
+<p><img src="https://i.loli.net/2021/04/26/IPs2SWilynMx4zo.png" alt="帖子列表"></p>
 <hr>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过此次实践，完整地走了一遍数据库诞生到实施的过程，从需求分析到概念设计到最后实现。直到现在，做实验时还常常忽略设计的步骤，其实指导思想很重要啊，知道要怎么做、做什么。</p>
 <p>在制作可交互端的时候用到了flask，了解了网页端html和后台之间数据传输的过程。实现数据库的功能时，其实大多数函数是相似的。一开始接触flask觉得复杂，了解了代码范式后写起来就比较快了。后来做毕业设计时也用到了flask，不过是用它来做数据传输的中转站，留到以后再说了。</p>
