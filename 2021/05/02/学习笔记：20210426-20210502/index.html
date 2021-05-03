@@ -11,34 +11,34 @@
   <meta charset="utf-8">
 
   
-  <title>ZITONG</title>
+  <title>学习笔记：2021.04.26.-2021.05.02.</title>
   
-  <link rel="canonical" href="http://zitong115.github.io/">
+  <link rel="canonical" href="http://zitong115.github.io/2021/05/02/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A20210426-20210502/">
   
-  <meta name="description" content="">
+  <meta name="description" content="【归一化、标准化和中心化】 归一化：把数据统一到一定范围内。把有量纲表达式变成无量纲表达式，便于不同单位或量级的指标能够进行比较和加权。 标准化：处理不同维度的数据，平均值变为0、标准差变为1。 中心化：平均值为0，对标准差无要求。 【seaborn热力图】 图片上下只显示一半的问题：y轴范围不对。">
   
   
   <meta name="author" content="Zitong">
   
-  <meta property="og:image" content="http://zitong115.github.io/images/thumbnail.jpg">
+  <meta property="og:image" content="http://zitong115.github.ioundefined">
   
   <meta property="og:site_name" content="ZITONG" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="ZITONG" />
+  <meta property="og:title" content="学习笔记：2021.04.26.-2021.05.02." />
   
-  <meta property="og:description" content="">
+  <meta property="og:description" content="【归一化、标准化和中心化】 归一化：把数据统一到一定范围内。把有量纲表达式变成无量纲表达式，便于不同单位或量级的指标能够进行比较和加权。 标准化：处理不同维度的数据，平均值变为0、标准差变为1。 中心化：平均值为0，对标准差无要求。 【seaborn热力图】 图片上下只显示一半的问题：y轴范围不对。">
   
-  <meta property="og:url" content="http://zitong115.github.io/" />
+  <meta property="og:url" content="http://zitong115.github.io/2021/05/02/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A20210426-20210502/" />
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ZITONG">
+  <meta name="twitter:title" content="学习笔记：2021.04.26.-2021.05.02.">
   
-  <meta name="twitter:description" content="">
+  <meta name="twitter:description" content="【归一化、标准化和中心化】 归一化：把数据统一到一定范围内。把有量纲表达式变成无量纲表达式，便于不同单位或量级的指标能够进行比较和加权。 标准化：处理不同维度的数据，平均值变为0、标准差变为1。 中心化：平均值为0，对标准差无要求。 【seaborn热力图】 图片上下只显示一半的问题：y轴范围不对。">
   
   
-  <meta name="twitter:image" content="http://zitong115.github.io/images/thumbnail.jpg">
+  <meta name="twitter:image" content="http://zitong115.github.ioundefined">
   
-  <meta name="twitter:url" content="http://zitong115.github.io/" />
+  <meta name="twitter:url" content="http://zitong115.github.io/2021/05/02/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A20210426-20210502/" />
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -189,76 +189,34 @@
 </div>
 
         <div class="trans">
-          <div class="row">
-  <div class="column">
-    <!-- Main information, edit it on theme/_config.yml -->
-    <h2 class="mb-2">Zitong</h2>
-    <p></p>
-    <p>Born in Lishui, Zhejiang province. Currently studying at Renmin University of China majoring in big data technology and data science. Will graduate in June, 2021 and continue to study here for a master&#39;s degree. The research field is privacy protection. Hobbies: writing stories and drawing (mostly with laptop).</p>
-  </div>
-</div>
+            <h2>学习笔记：2021.04.26.-2021.05.02.</h2>
 
-<h3>Recent Posts</h3>
+  <p>【归一化、标准化和中心化】</p>
+<p>归一化：把数据统一到一定范围内。把有量纲表达式变成无量纲表达式，便于不同单位或量级的指标能够进行比较和加权。</p>
+<p>标准化：处理不同维度的数据，平均值变为0、标准差变为1。</p>
+<p>中心化：平均值为0，对标准差无要求。</p>
+<p>【seaborn热力图】</p>
+<p>图片上下只显示一半的问题：y轴范围不对。</p>
+<pre class="line-numbers language-none"><code class="language-none">heatmap &#x3D; sns.heatmap(uniform_data,annot&#x3D;True, square&#x3D;False)
+bottom, top &#x3D; heatmap.get_ylim()
+heatmap.set_ylim(bottom + 0.5, top - 0.5)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
+<p>显示annot时，修改数据呈现格式：fmt参数。</p>
+<p>【hexo文章加密功能】</p>
+<p>安装hexo-blog-encrypt：</p>
+<pre class="line-numbers language-none"><code class="language-none">npm install --save hexo-blog-encrypt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<div class="row">
+<p>修改根目录配置文件，“encrypt:true”。</p>
+<p>在文章配置中设置密码。</p>
+<p>【markdown添加图床】</p>
+<p>安利一款比较好用的图床工具：<a target="_blank" rel="noopener" href="https://picgo.github.io/PicGo-Doc/zh/guide/#%E5%90%AC%E8%AF%B4%E4%BD%A0%E4%B9%9F%E6%83%B3%E7%94%A8picgo">PicGo</a></p>
+<p>配套使用SM.MS的图床空间，免费5G大小，还挺方便的。</p>
+<p>【在win10上给文件设定默认打开方式】</p>
+<p>以.md文件为例：右键md文件-属性-常规-打开方式后面有一个“更改”选项，在那里设置。</p>
 
-  <div class="three columns left lit">
-    <p class="bottom">2021年5月2日</p>
-  </div>
-  <div class="nine columns left mb-3">
-    <a href="/2021/05/02/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%8A%A8%E7%89%A9%E5%9B%AD/" >
-      
-        读书笔记: 《动物园》
-      
-    </a>
-  </div>
-</div>
+  <p><a class="classtest-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a> — 2021年5月2日</p>
+  
 
-<div class="row">
-
-  <div class="three columns left lit">
-    <p class="bottom">2021年5月2日</p>
-  </div>
-  <div class="nine columns left mb-3">
-    <a href="/2021/05/02/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%AD%A4%E7%AD%8F%E9%87%8D%E6%B4%8B/" >
-      
-        读书笔记: 《孤筏重洋》
-      
-    </a>
-  </div>
-</div>
-
-<div class="row">
-
-  <div class="three columns left lit">
-    <p class="bottom">2021年5月2日</p>
-  </div>
-  <div class="nine columns left mb-3">
-    <a href="/2021/05/02/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A20210426-20210502/" >
-      
-        学习笔记：2021.04.26.-2021.05.02.
-      
-    </a>
-  </div>
-</div>
-
-<div class="row">
-
-  <div class="three columns left lit">
-    <p class="bottom">2021年5月1日</p>
-  </div>
-  <div class="nine columns left mb-3">
-    <a href="/2021/05/01/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E4%B8%96%E7%95%8C%E5%B0%BD%E5%A4%B4%E4%B8%8E%E5%86%B7%E9%85%B7%E4%BB%99%E5%A2%83/" >
-      
-        读书笔记: 《世界尽头与冷酷仙境》
-      
-    </a>
-  </div>
-</div>
-
-
-<h4> <a href="/archives">All Posts</a></h4>
 
           <div class="row mt-2">
   
